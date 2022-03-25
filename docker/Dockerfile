@@ -11,11 +11,9 @@ ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 # Install development packages
 RUN apt-get install -y \
-    git \
     zip \
     curl \
     unzip \
-    supervisor \
     libzip-dev \
     libonig-dev \
     libicu-dev \

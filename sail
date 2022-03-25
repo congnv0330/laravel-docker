@@ -69,10 +69,6 @@ if [ -z "$SAIL_SKIP_CHECKS" ]; then
 
     # Determine if Sail is currently up...
     if "${DOCKER_COMPOSE[@]}" ps "$APP_SERVICE" | grep 'Exit\|exited'; then
-        echo -e "${WHITE}Shutting down old Sail processes...${NC}" >&2
-
-        "${DOCKER_COMPOSE[@]}" down > /dev/null 2>&1
-
         EXEC="no"
     elif [ -z "$(${DOCKER_COMPOSE[@]} ps -q)" ]; then
         EXEC="no"
