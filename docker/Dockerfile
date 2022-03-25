@@ -48,7 +48,8 @@ RUN a2enmod rewrite headers
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 # Install php extenstion
-RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-configure opcache --enable-opcache
 
 RUN docker-php-ext-install \
     imap \
@@ -77,4 +78,5 @@ RUN mkdir -p /home/sail/.composer && \
     chown -R sail:sail /home/sail
 
 # PHP config
-COPY php.ini /usr/local/etc/php/conf.d/99-sail.ini
+COPY php/conf.d/opcache.ini /usr/local/etc/php/conf.d/99-opcache.ini
+COPY php/conf.d/php.ini /usr/local/etc/php/conf.d/99-sail.ini
