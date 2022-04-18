@@ -14,6 +14,7 @@ RUN apt-get install -y \
     zip \
     curl \
     unzip \
+    # supervisor \
     libzip-dev \
     libonig-dev \
     libicu-dev \
@@ -78,3 +79,7 @@ RUN mkdir -p /home/sail/.composer && \
 # PHP config
 COPY php/conf.d/opcache.ini /usr/local/etc/php/conf.d/99-opcache.ini
 COPY php/conf.d/php.ini /usr/local/etc/php/conf.d/99-sail.ini
+
+# Other
+# COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
